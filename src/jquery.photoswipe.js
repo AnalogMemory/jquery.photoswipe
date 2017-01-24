@@ -86,7 +86,7 @@ function PhotoSwipeMounter($) {
 
         if (this.tagName !== 'IMG') {
             d.resolve({
-                html: this.innerHTML
+                html: this.innerHTML,
             });
         } else {
             getImgSize($img).done(function (w, h) {
@@ -131,7 +131,7 @@ function PhotoSwipeMounter($) {
                     h: h,
                     src: original_src,
                     msrc: src,
-                    title: title
+                    title: title,
                 });
             });
         }
@@ -233,10 +233,13 @@ function PhotoSwipeMounter($) {
         });
     }
 
-    $.fn.photoSwipe = function (slideSelector = 'img', options = {}, events = {}) {
+    $.fn.photoSwipe = function (slideSelector, options, events) {
+        if (slideSelector === undefined) slideSelector = 'img';
+        if (options === undefined) options = {};
+        if (events === undefined) events = {};
         var defaultOptions = {
                 bgOpacity: 0.973,
-                showHideOpacity: true
+                showHideOpacity: true,
             },
             globalOptions  = $.extend(defaultOptions, options);
 
